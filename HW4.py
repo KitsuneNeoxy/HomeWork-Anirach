@@ -1,14 +1,14 @@
 def group_by_signature(words: list) -> list:
-    words = [word for word in words if word]
-    same = [''.join(sorted(a)) for a in words]
-    pick = [i for i in set(same)]
-    result = {}
-    for i in pick:
-        result[i] = []
-        for word in words:
-            if i == ''.join(sorted(word)):
-                result[i] += [word]
-    return list(result.values())
+    anagrams = {}
+    words = [w for w in words if w != ""]
+    for word in words:
+        key = ''.join(sorted(word))
+        if key in anagrams:
+            anagrams[key].append(word)
+        else:
+            anagrams[key] = [word]
+    return list(anagrams.values())
+
 
 if __name__ == "__main__":
     # Example 1
